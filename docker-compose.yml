@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        AUTH_DATA:
+    environment:
+      REPOSITORY:
+      DOCKER_HOST:
+      VOLUME:
+      TAG:
+    command:
+      - 00 03 * * * backup.sh
+      - 00 04 * * * backup.sh "$${TAG}-$$(date +%u)"
+      - 00 05 1 * * backup.sh "$${TAG}-$$(date +%Y%m%d)"
